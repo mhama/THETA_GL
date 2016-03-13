@@ -1,0 +1,53 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>updown test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>updown test</h1>
+      <div class="row">
+        <div class="col-xs-6">
+          <h2>up</h2>
+          <video id="local-video" autoplay="" style="width: 400px; height: 275px; border: 1px solid black;"></video>
+        </div>
+        <div class="col-xs-6">
+          <h2>down</h2>
+          <video id="remote-video" autoplay="" style="width: 400px; height: 275px; border: 1px solid black;"></video>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./anzu.js"></script>
+    <script type="text/javascript">
+      var channelId = "";
+      var upstreamToken = "";
+
+      // Upstream を開始する
+      var anzuUpstream = new Anzu("upstream");
+      anzuUpstream.start(channelId, upstreamToken, {video: true, audio: true})
+        .then(function(params) {
+          var videoElement = document.getElementById("local-video");
+          videoElement.src = window.URL.createObjectURL(params.stream);
+          videoElement.play();
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+
+      // Downstream を開始する
+      var anzuDownstream = new Anzu("downstream");
+      anzuDownstream.start(channelId, "")
+        .then(function(params) {
+          var videoElement = document.getElementById("remote-video");
+          videoElement.src = window.URL.createObjectURL(params.stream);
+          videoElement.play();
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+    </script>
+  </body>
+</html>
