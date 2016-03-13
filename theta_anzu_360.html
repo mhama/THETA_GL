@@ -47,7 +47,7 @@
       var anzuDownstream = new Anzu("downstream");
       anzuDownstream.start(channelId, "")
       .then(function(params) {
-        var videoElement = document.getElementById("remote_video");
+        var videoElement = document.getElementById("remote-video");
         videoElement.src = window.URL.createObjectURL(params.stream);
         videoElement.play();
         
