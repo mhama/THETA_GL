@@ -52,6 +52,7 @@
         
         var src = window.URL.createObjectURL(params.stream);
         THETA_GL.setVideoSrc(src);
+        THETA_GL.startAnimate();
       })
       .catch(function(error) {
         console.error(error);
