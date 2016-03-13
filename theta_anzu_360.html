@@ -25,6 +25,7 @@
     -->
     <input type="checkbox" id="sense_orientation_check" _not_checked="checked" onclick="toggleSenseOrientation()">Sense Orientation</input>
   </div>
+  <video id="remote-video" autoplay="" style="width: 400px; height: 275px; border: 1px solid black;"></video>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script> 
   <script src="js/theta_gl.js"></script>
@@ -46,13 +47,13 @@
       var anzuDownstream = new Anzu("downstream");
       anzuDownstream.start(channelId, "")
       .then(function(params) {
-        //var videoElement = document.getElementById("remote_video");
-        //videoElement.src = window.URL.createObjectURL(params.stream);
-        //videoElement.play();
+        var videoElement = document.getElementById("remote_video");
+        videoElement.src = window.URL.createObjectURL(params.stream);
+        videoElement.play();
         
-        var src = window.URL.createObjectURL(params.stream);
-        THETA_GL.setVideoSrc(src);
-        THETA_GL.startAnimate();
+        //var src = window.URL.createObjectURL(params.stream);
+        //THETA_GL.setVideoSrc(src);
+        //THETA_GL.startAnimate();
       })
       .catch(function(error) {
         console.error(error);
