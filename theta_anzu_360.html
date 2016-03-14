@@ -47,12 +47,13 @@
       var anzuDownstream = new Anzu("downstream");
       anzuDownstream.start(channelId, "")
       .then(function(params) {
+        /*
         var videoElement = document.getElementById("remote-video");
         videoElement.src = window.URL.createObjectURL(params.stream);
         videoElement.play();
-        
-        //var src = window.URL.createObjectURL(params.stream);
-        //THETA_GL.setVideoSrc(src);
+        */
+        var src = window.URL.createObjectURL(params.stream);
+        THETA_GL.setVideoSrc(src);
         //THETA_GL.startAnimate();
       })
       .catch(function(error) {
@@ -86,7 +87,7 @@
 
 
     THETA_GL.init(/* divId */ 'container', /* autoResuze */ true,  /* debug */ false);
-    //THETA_GL.startAnimate();
+    THETA_GL.startAnimate();
   </script>
 </body>
 
